@@ -9,7 +9,7 @@
 }
 .preloader {
     position: fixed;
-    z-index: 100;
+    z-index: 10000;
     top: 0;
     left: 0;
     width: 100vw;
@@ -83,6 +83,7 @@ body{
     border: 2px solid black;
     padding-top: 2vh;
     padding-bottom: 2vh;
+    border: 3px solid red;
 }
 
 .cen{
@@ -202,19 +203,6 @@ body{
 }
 
 
-/* .left_div span .logo:hover{
-    background: url('./assets/MOF\ LOGO.png'), rgba(0, 0, 0, 0.478) ;
-    background-size: 125%;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow:  0 0 55px 1px #0000008a !important;
-
-    
-
-    box-shadow: 0 0 0px 1px #ebeef6;
-    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.175);
-
-} */
 .left_div .two{
     display: flex;
     justify-content: space-between;

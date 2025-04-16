@@ -43,7 +43,8 @@ const links = {
     outlook: "https://outlook.office.com",
     sharepoint: "https://mofghana.sharepoint.com/_layouts/15/sharepoint.aspx",
     official: "https://www.mofep.gov.gh",
-    onedrive: "https://portal.office.com/onedrive"
+    onedrive: "https://portal.office.com/onedrive",
+    example: "https://example.com"
 };
 
 // ------------------------------
@@ -102,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let ministries = [];
 
     // Load ministries list from JSON
-    fetch("./links.json")
+    fetch("./data/links.json")
         .then(response => response.json())
         .then(data => {
             ministries = data;

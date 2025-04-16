@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", serif;
+    border: none !important;
+}
+.preloader {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-container {
+    position: relative;
+    width: 20rem;
+    height: 7rem;
+     overflow: hidden;
+  }
+  
+  .logo-container img {
+    width: 100%;
+     object-fit: contain;
+    display: block;
+    opacity: 0; /* hidden until loaded */
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .reveal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    z-index: 2;
+    transform: translateX(0);
+    transition: transform 2s ease-in-out;
+  }
+  
+
+body{
+    overflow: hidden;
+    height: 100vh;
+     width: 100vw;
+     cursor: pointer;
+}
+.nav{
+    color: #222;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4vw;
+    font-size: .9rem;
+}
+.nav .coa{
+    height: 3rem;
+    width: 3rem;
+ }
+.coa img{
+    width: 100%;
+}
+.container{
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(56deg, #eef5ff, #eef5ff);
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    position: relative;
+    padding-left: 1vw;
+    padding-right: 1vw;
+     cursor: pointer;
+    overflow: hidden;
+    border: 2px solid black;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
+.cen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav{
+    position: absolute;
+    top: 0rem;
+    left: 0;
+    height: 4rem;
+    width: 100%;
+ }
+.container aside{
+    margin-top: .5rem;
+    border: 1px solid rgb(255, 255, 255);
+    height: 100%;
+    /* margin-top: 4rem; */
+}
+
+.left_div{
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+  }
+
+.left_div span{
+    align-items: flex-start;
+    
+
+
+}
+.flex{
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+}
+
+
+.left_div span .link1 {
+    height: 95%;
+    width: 95%;
+    border-radius: 2rem;
+    border: 1px solid black;
+    background-color: #b3ecf9; /* Set the background color */
+    background-image: url('./assets/office365.png'); /* Add the image */
+    background-size: 100%; /* Start with 100% */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+    box-shadow: 0 0 0px 1px #b3ecf900; /* Transparent shadow */
+    position: relative;
+    transition: background-size 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.175); /* Animate the background size */
+}
+
+.left_div span .link1:hover {
+    
+    background-size: 135%; /* Scale up to 135% on hover */
+    box-shadow: 0 0 8px 1px #b3ecf9; /* Add shadow effect */
+}
+
+.slide1{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.538);
+
+    height: 0rem;
+    transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+
+}
+.sl:hover .slide1{
+    height: 6rem;
+    
+
+
+}
+.slide2{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    border-top-right-radius: 0rem;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0));
+
+    height: 6rem;
+    transition: all 6s cubic-bezier(0.1, 0.9, 0.2, 1);
+  
+}
+.sl:hover .slide2{
+    background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.859));
+    border-top-right-radius: 12rem;
+
+    height: 6rem;
+    width: 100%;
+ 
+
+
+
+}
+
+
+
+
+.left_div span .logo {
+    position: relative;
+    height: 95%;
+    width: 95%;
+    border: 1px solid BLACK;
+    border-radius: 2rem;
+    background-color: #f7f7f7; /* Set white background */
+    background-image: url('./assets/MOF LOGO.png'); /* Add the logo */
+    background-size: contain; /* Ensure the image maintains its aspect ratio and fits within the element */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+}
+
+
+/* .left_div span .logo:hover{
+    background: url('./assets/MOF\ LOGO.png'), rgba(0, 0, 0, 0.478) ;
+    background-size: 125%;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow:  0 0 55px 1px #0000008a !important;
+
+    
+
+    box-shadow: 0 0 0px 1px #ebeef6;
+    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+
+} */
+.left_div .two{
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+
+}
+
+.element1, .element2{
+    height: 95% !important;
+    width: 49% !important;
+     border-radius: 2rem !important;
+
+}
+.element1{
+     background: url('./assets/doc\ em.png') no-repeat center center, linear-gradient(45deg, #40aba1, #237a71);
+
+    background-size: 110% !important;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 0px 1px #ebeef600;
+    border: 1px solid black;
+    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+
+}
+
+
+.element1:hover{
+    background: url('./assets/doc\ em.png'), rgba(0, 0, 0, 0.414);
+    background-blend-mode: overlay;
+    background-size: 125% !important;
+    background-position: center;
+    background-repeat: no-repeat;    box-shadow: 0 0 0px 1px #252f2e;
+
+}
+.element2{
+     background: url('./assets/outlook.avif') no-repeat center center, #dae0ee;
+    border: 1px solid black;
+    background-size:70% !important ;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 0px 1px #ebeef600;
+
+    transition: .6s cubic-bezier(0.175, 0.885, 0.32, 1.175);
+
+}
+.element2:hover{
+    background: url('./assets/outlook.avif') , #1212129b;
+    background-blend-mode: overlay;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 125% !important;
+    box-shadow: 0 0 0px 1px #babfd5;
+}
+
+.right_div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+     
+    
+}
+
+.right_div .r1 {
+    height: 60%;
+    margin-top: 0px;
+    width: 100%;
+    border-radius: 2rem;
+    background-color:#dff4f9; /* Set the base background color */
+    background-image: url(./assets/sharepoint.png); /* Add the image */
+    background-size: 100%; /* Start with 100% */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent image repetition */
+     transition: background-size 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.175); /* Smooth transition */
+}
+
+.right_div .r1:hover {
+    background-size: 140%; /* Scale up to 140% on hover */
+}
+
+.right_div .r2{
+    height: 36%;
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 2rem;
+    margin-bottom: 1rem;
+    background: url(./assets/mof.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+.inf{
+    font-size: 2rem;
+    width: 60%;
+    position: absolute;
+    height: 100%;
+    z-index: 5;
+    top: 45%;
+    left: 15px;
+    border-bottom: 2px solid #222 !important;
+    padding-bottom: -4rem;
+     height: max-content;
+       opacity: 0;
+       color: #222 !important;
+    transition: all 1s cubic-bezier(0.1, 0.9, 0.2, 1);
+
+    
+}
+
+.r2:hover .inf{
+    padding-bottom: .5rem;
+ 
+    opacity: 1;
+}
+
+.bgc1{
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background: red;
+    z-index: -1;
+}

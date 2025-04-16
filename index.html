@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOF Landing Page</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="panel.css">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+
+<!-- Floating Search Icon -->
+ 
+
+    <link rel="icon" href="./assets/Coat_of_arms_of_Ghana.svg.png" type="image/png">
+    <!-- Include SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
+    <style>
+        /* Style for blank white background when on mobile */
+        body{
+            background: url(./assets/adinkra.jpg), rgba(0, 0, 0, 0.881);
+            background-size: 10rem;
+            background-blend-mode: overlay;
+
+        }
+        .mobile-view {
+            display: none;
+            background-color: white;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        
+        /* Grid layout styles */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            height: 100vh;
+        }
+        
+        .grid-item {
+            position: relative;
+            aspect-ratio: 1/1;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .grid-item:hover {
+            transform: scale(1.03);
+            cursor: pointer;
+        }
+        
+        .empty-item {
+            background-color: #f5f5f5;
+            border: 2px dashed #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        /* Navbar Styles */
+    .mof-navbar {
+        background-color: white;
+        color: #333;
+        padding: 0 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid #0F4B8F;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+        height: 80px;
+    }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .mof-logo {
+        height: 5rem;
+        width: 10rem;
+        background: url('./assets/MOF\ LOGO.png');
+        background-size: cover;
+        background-position: center;
+   
+    }
+
+    .nav-titles {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.1;
+    }
+
+    .nav-main-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0F4B8F;
+        text-transform: uppercase;
+    }
+
+    .nav-sub-title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #555;
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-search-btn {
+        background: transparent;
+        border: none;
+        color: #0F4B8F;
+        cursor: pointer;
+        padding: 8px;
+        border-radius: 50%;
+        transition: background-color 0.3s ease;
+    }
+
+    .nav-search-btn:hover {
+        background-color: rgba(15, 75, 143, 0.1);
+    }
+
+    .nav-search-btn svg {
+        display: block;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .nav-container {
+            padding: 0 1rem;
+            height: 70px;
+        }
+        
+        .mof-logo svg {
+            height: 40px;
+            width: 40px;
+        }
+        
+        .nav-main-title {
+            font-size: 1.1rem;
+        }
+        
+        .nav-sub-title {
+            font-size: 0.9rem;
+        }
+    }
+
+  
+    .floating-search {
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #a1e3ff, #e6f7ff);
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #005f99;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.floating-search:hover {
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  transform: scale(1.08) rotate(5deg);
+  background: linear-gradient(135deg, #8cdbff, #d4f1ff);
+}
+
+.floating-search::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.4s ease-out;
+  z-index: -1;
+}
+
+.floating-search:hover::before {
+  transform: scale(2.5);
+}
+
+.floating-search:active {
+  transform: scale(0.95);
+}
+    </style>
+</head>
+<body>
+    <!-- Preloader with MOF logo -->
+<!-- <div class="preloader">
+    <div class="logo-container">
+        <img id="preloader-logo" src="./assets/MOF LOGO.png" alt="Logo" />
+        <div class="reveal-overlay"></div>
+    </div>
+</div> -->
+
+<div class="floating-search" onclick="togglePanel()">
+    <i class="fas fa-search"></i>
+  </div>
+
+<!-- Top Navigation Bar -->
+<!-- <nav class="mof-navbar">
+    <div class="nav-container">
+        <div class="nav-brand">
+            <div class="mof-logo">
+             </div>
+            <div class="nav-titles">
+                <div class="nav-main-title">MINISTRY OF FINANCE</div>
+                <div class="nav-sub-title">PORTALS</div>
+            </div>
+        </div>
+        <div class="nav-actions">
+             <button class="nav-search-btn" onclick="togglePanel()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav> -->
+
+<!-- Hamburger Menu for Mobile -->
+<!-- <div class="hamburger" onclick="togglePanel();">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div> -->
+
+<!-- Search Side Panel -->
+<div class="side-panel" id="sidePanel">
+    <div class="close" onClick="togglePanel()">×</div>
+    <div class="search-container">
+        <input type="text" class="search-box" id="searchInput" placeholder="Search for links and resources...">
+        <ul class="search-results" id="searchResults"></ul>
+    </div>
+</div>
+
+<!-- Mobile View Placeholder -->
+<div id="mobileView" class="mobile-view"></div>
+
+<!-- Desktop View: Portal Cards Grid -->
+<div id="desktopView" class="grid-container">
+
+    <!-- Office 365 Portal Card -->
+    <div class="grid-item card r1 sl i1" onclick="openLink('office365')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">MICROSOFT OFFICE 365</div>
+                <div class="job">Access Word, Excel, PowerPoint, and other Office tools.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SharePoint Portal Card -->
+    <div class="grid-item card r1 sl i2" onclick="openLink('sharepoint')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">SHAREPOINT</div>
+                <div class="job">Sites, content, and collaboration.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DOC'EM Management System Card -->
+    <div class="grid-item card r1 sl i3" onclick="openLink('docem')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">DOC'EM</div>
+                <div class="job">Document Management System</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Outlook Mail Portal Card -->
+    <div class="grid-item card r1 sl i4" onclick="openLink('outlook')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">OUTLOOK</div>
+                <div class="job">Emails, meetings, and connections</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ministry of Finance Official Website Card -->
+    <div class="grid-item card r1 sl i5" onclick="openLink('ministry')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Official Ministry Website</div>
+                <div class="job">Official Website, Ministry of Finance</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OneDrive Storage Portal Card -->
+    <div class="grid-item card r1 sl i6" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">ONEDRIVE</div>
+                <div class="job">Cloud storage for document sharing and collaboration.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blank -->
+    <div class="grid-item card r1 sl ib" onclick="openLink('onedrive')">
+        <div class="slide1"></div>
+        <div class="slide2"></div>
+        <div class="footer">
+            <div class="connections">
+                <div class="connection facebook"><div class="icon"></div></div>
+                <div class="connection twitter"><div class="icon"></div></div>
+                <div class="connection behance"><div class="icon"></div></div>
+            </div>
+            <div class="info">
+                <div class="name">Blank Item</div>
+                <div class="job">Blank placeholder item </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <!--//Javascript link-->
+    <script src="./scripts/script.js"></script>
+    
+</body>
+</html>
+

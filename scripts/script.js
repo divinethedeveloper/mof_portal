@@ -37,13 +37,13 @@ window.addEventListener('load', () => {
 // PORTAL LINKS OBJECT
 // ------------------------------
 const links = {
-    office365: "https://portal.office.com",
-    ministry: "https://www.mofep.gov.gh",
+    office365: "https://m365.cloud.microsoft/apps/?auth=2",
+    ministry: "https://mofep.gov.gh",
     docem: "https://docem.mofep.gov.gh/DOCEM.UI/login",
-    outlook: "https://outlook.office.com",
-    sharepoint: "https://mofghana.sharepoint.com/_layouts/15/sharepoint.aspx",
-    official: "https://www.mofep.gov.gh",
-    onedrive: "https://portal.office.com/onedrive",
+    outlook: "https://outlook.office.com/mail/",
+    sharepoint: "https://mofghana.sharepoint.com/",
+    official: "https://mofep.gov.gh",
+    onedrive: "https://mofghana-my.sharepoint.com/",
     example: "https://example.com"
 };
 
